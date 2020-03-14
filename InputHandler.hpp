@@ -8,7 +8,7 @@ class InputHandler : public IInputHandler
 public:
     InputHandler(PaddleEntity& paddleOne);
     ~InputHandler();
-    void HandleInput(const SDL_Event& sdlEvent);
+    bool HandleInputForPlayerOne(const SDL_Event& sdlEvent);
 private:
     PaddleEntity& paddleOne;
 };

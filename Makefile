@@ -1,9 +1,9 @@
-OBJS = Pong.cpp PaddleEntity.cpp
+OBJS = Pong.cpp PaddleEntity.cpp InputHandler.cpp
 CC = g++
-HEADERS = -IBall.hpp -IPaddleEntity.hpp -IInputHandler.hpp
+HEADERS = -IBall.hpp -IPaddleEntity.hpp -IInputHandler.hpp -ILogger.hpp -IIInputHandler.hpp
 INCLUDE_PATHS = -IC:\MinGW\include\SDL2
 LIBRARY_PATHS = -LC:\MinGW\lib
-COMPILER_FLAGS = -g -w -Wl,-subsystem,windows
+COMPILER_FLAGS = -g -w -Wall
 LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2
 OBJ_NAME = Pong.exe
 STD_VERSION = --std=c++14
