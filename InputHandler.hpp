@@ -2,6 +2,10 @@
 
 #include "IInputHandler.hpp"
 #include "PaddleEntity.hpp"
+#include "EnumsAndGlobals.hpp"
+
+namespace Pong
+{
 
 class InputHandler : public IInputHandler
 {
@@ -12,3 +16,5 @@ public:
 private:
     PaddleEntity& paddleOne;
 };
+
+}

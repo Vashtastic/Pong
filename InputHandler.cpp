@@ -2,6 +2,9 @@
 #include "InputHandler.hpp"
 #include "Logger.hpp"
 
+namespace Pong
+{
+
 InputHandler::InputHandler(PaddleEntity& padOne)
 :paddleOne(padOne)
 {
@@ -37,4 +40,6 @@ bool InputHandler::HandleInputForPlayerOne(const SDL_Event& sdlEvent)
             break;
     }
     return false;
+}
+
 }
