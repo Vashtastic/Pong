@@ -17,10 +17,13 @@ public:
     inline void SetHeight(int32_t height);
     inline void SetWidth(int32_t width);
     const WindowLocation& GetPaddleLocation() const;
+    SDL_Rect& GetPaddle();
+    void DrawPaddle();
 private:
     WindowLocation location;
     int32_t height;
     int32_t width;
+    SDL_Rect paddle{};
 };
 
 }

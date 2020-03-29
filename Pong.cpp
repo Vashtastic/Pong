@@ -7,20 +7,6 @@
 #include "InputHandler.hpp"
 #include "Logger.hpp"
 
-namespace
-{
-constexpr uint32_t DELAY_OFFSET = 5000;
-constexpr uint32_t SCREEN_WIDTH = 680;
-constexpr uint32_t SCREEN_HEIGHT = 480;
-constexpr uint32_t RENDERER_RESOLUTION = 400;
-constexpr uint32_t PONG_ONE_X_START = 0;
-constexpr uint32_t PONG_ONE_Y_START = 0;
-constexpr uint32_t PONG_HEIGHT = 0;
-constexpr uint32_t PONG_WIDTH = 0;
-const     std::string WINDOW_NAME = "SUPER PONG";
-const     std::string ICON_NAME = "unnamed.jpg";
-}
-
 using namespace Pong;
 
 void Draw()
@@ -43,9 +29,29 @@ void InitializeWindows()
     SDL_SetWindowIcon(gRawWindow, windowWithBmp);
 }
 
-void showMenu()
+void SetNet()
 {
-    //TO DO
+    constexpr int16_t NET_X = (SCREEN_WIDTH / 2) / 2;
+    SDL_Rect net{};
+    net.x = NET_X + 10;
+    net.y = -5;
+    net.w = 5;
+    net.h = SCREEN_HEIGHT;
+    SDL_SetRenderDrawColor(gRawRenderer, 255, 255, 255, 255);
+    SDL_RenderFillRect(gRawRenderer, &net);
+    SDL_RenderDrawRect(gRawRenderer, &net);
+    SDL_SetRenderDrawColor(gRawRenderer, 0, 0, 0, 255);
+    SDL_RenderPresent(gRawRenderer);
+}
+
+void DrawPaddle(PaddleEntity& paddleEntity)
+{
+    SDL_Rect& paddle = paddleEntity.GetPaddle() ;
+    SDL_SetRenderDrawColor(gRawRenderer, 255, 255, 255, 255);
+    SDL_RenderFillRect(gRawRenderer, &paddle);
+    SDL_RenderDrawRect(gRawRenderer, &paddle);
+    SDL_SetRenderDrawColor(gRawRenderer, 0, 0, 0, 255);
+    SDL_RenderPresent(gRawRenderer);
 }
 
 bool HasEventForProcessing(SDL_Event& event)
@@ -55,7 +61,7 @@ bool HasEventForProcessing(SDL_Event& event)
 
 int8_t InitSDL()
 {
-    return SDL_Init(SDL_INIT_VIDEO);
+    return SDL_Init(SDL_INIT_EVERYTHING);
 }
 
 int main(int argc, char** argv)
@@ -66,12 +72,16 @@ int main(int argc, char** argv)
     }
 
     InitializeWindows();
+    SetNet();
+
     SDL_SetWindowTitle(gRawWindow, WINDOW_NAME.c_str());
     SDL_Event event{};
     bool isQuitEvent = false;
 
-    PaddleEntity paddleEntityOne(PONG_ONE_X_START, PONG_ONE_Y_START, PONG_HEIGHT, PONG_WIDTH);
+    PaddleEntity paddleEntityOne(200, 200, PONG_HEIGHT, PONG_WIDTH);
+    DrawPaddle(paddleEntityOne); //TODO Find out why PaddleEntity cant draw. Create rectangle processor
     InputHandler inputHandler(paddleEntityOne);
+
 
     while (!isQuitEvent)
     {
@@ -80,9 +90,8 @@ int main(int argc, char** argv)
         {
             isQuitEvent = inputHandler.HandleInputForPlayerOne(event);
         }
-
     }
-    SDL_Delay(DELAY_OFFSET);
+    // SDL_Delay(DELAY_OFFSET);
     SDL_DestroyRenderer(gRawRenderer);
     SDL_DestroyWindow(gRawWindow);
 }
