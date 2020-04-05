@@ -1,4 +1,6 @@
 OBJS = Pong.cpp PaddleEntity.cpp InputHandler.cpp
+HDR_DIR = hdr
+SRC_DIR = src
 CC = g++
 HEADERS = -IBall.hpp -IPaddleEntity.hpp -IInputHandler.hpp -ILogger.hpp -IIInputHandler.hpp -IEnumsAndGlobals.hpp
 INCLUDE_PATHS = -IC:\MinGW\include\SDL2

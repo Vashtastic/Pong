@@ -3,8 +3,9 @@
 namespace Pong
 {
 
-PaddleEntity::PaddleEntity(int32_t locX, int32_t locY, int32_t height, int32_t width)
+PaddleEntity::PaddleEntity(int64_t locX, int32_t locY, int32_t height, int32_t width)
 {
+    LOG_INF("[OWO] X is %d", locX);
     paddle.x = locX;
     paddle.y = locY;
     paddle.h = height;
@@ -36,14 +37,14 @@ inline void PaddleEntity::SetWidth(int32_t width)
     paddle.w = width;
 }
 
-const WindowLocation& PaddleEntity::GetPaddleLocation() const
-{
-    return location;
-}
-
 SDL_Rect& PaddleEntity::GetPaddle()
 {
     return paddle;
+}
+
+void PaddleEntity::toString()
+{
+    LOG_INF("PaddleOne x: %d y: %d", paddle.x, paddle.y);
 }
 
 }

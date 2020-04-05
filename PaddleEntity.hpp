@@ -1,8 +1,8 @@
 #pragma once
 #include <stdint.h>
-#include "WindowLocation.hpp"
 #include "SDL2/SDL.h"
 #include "EnumsAndGlobals.hpp"
+#include "Logger.hpp"
 
 namespace Pong
 {
@@ -10,19 +10,17 @@ namespace Pong
 class PaddleEntity
 {
 public:
-    PaddleEntity(int32_t locX, int32_t locY, int32_t height, int32_t width);
+    PaddleEntity(int64_t locX, int32_t locY, int32_t height, int32_t width);
     ~PaddleEntity();
     inline void SetLocationX(int32_t locationX);
     inline void SetLocationY(int32_t locatinonY);
     inline void SetHeight(int32_t height);
     inline void SetWidth(int32_t width);
-    const WindowLocation& GetPaddleLocation() const;
     SDL_Rect& GetPaddle();
-    void DrawPaddle();
+    void toString();
 private:
-    WindowLocation location;
-    int32_t height;
-    int32_t width;
+    int64_t height{};
+    int32_t width{};
     SDL_Rect paddle{};
 };
 

@@ -18,19 +18,27 @@ InputHandler::~InputHandler()
 
 bool InputHandler::HandleInputForPlayerOne(const SDL_Event& sdlEvent)
 {
+    auto& paddleY = paddleOne.GetPaddle().y;
+    auto& paddleX = paddleOne.GetPaddle().x;
+
     switch (sdlEvent.key.keysym.sym)
     {
         case SDLK_UP:
-            LOG_INF("UP pressed!");
+            --paddleY;
+            LOG_INF("[OWO] X: %d \n", paddleX);
+            paddleOne.toString();
             break;
         case SDLK_DOWN:
-            LOG_INF("DOWN pressed!");
+            ++paddleY;
+            paddleOne.toString();
             break;
         case SDLK_LEFT:
-            LOG_INF("LEFT pressed!");
+            --paddleX;
+            paddleOne.toString();
             break;
         case SDLK_RIGHT :
-            LOG_INF("RIGHT pressed!");
+            ++paddleX;
+            paddleOne.toString();
             break;
         case SDLK_ESCAPE:
             LOG_INF("ESC pressed!");
