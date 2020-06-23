@@ -44,7 +44,7 @@ SDL_Rect& PaddleEntity::GetPaddle()
 
 void PaddleEntity::toString()
 {
-    LOG_INF("PaddleOne x: %d y: %d", paddle.x, paddle.y);
+    LOG_INF("PaddleOne x: %d y: %d", paddle.y, paddle.x);
 }
 
 }

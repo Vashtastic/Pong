@@ -24,12 +24,12 @@ bool InputHandler::HandleInputForPlayerOne(const SDL_Event& sdlEvent)
     switch (sdlEvent.key.keysym.sym)
     {
         case SDLK_UP:
-            --paddleY;
+            paddleY -= 10;
             LOG_INF("[OWO] X: %d \n", paddleX);
             paddleOne.toString();
             break;
         case SDLK_DOWN:
-            ++paddleY;
+            paddleY += 10;
             paddleOne.toString();
             break;
         case SDLK_LEFT:

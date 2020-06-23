@@ -56,7 +56,9 @@ void DrawPaddle(PaddleEntity& paddleEntity)
 
 void RefreshScreen()
 {
-
+    SDL_SetRenderDrawColor(gRawRenderer, 0, 0, 0, 0);
+    SDL_RenderClear(gRawRenderer);
+    SDL_RenderPresent(gRawRenderer);
 }
 
 bool HasEventForProcessing(SDL_Event& event)
@@ -92,10 +94,11 @@ int main(int argc, char** argv)
         if (frameHasPassed)
         {
             isQuitEvent = inputHandler.HandleInputForPlayerOne(event);
+            RefreshScreen();
+            SetNet();
+            DrawPaddle(paddleEntityOne); //TODO Find out why PaddleEntity cant draw. Create rectangle processor
         }
-        DrawPaddle(paddleEntityOne); //TODO Find out why PaddleEntity cant draw. Create rectangle processor
     }
-    // SDL_Delay(DELAY_OFFSET);
     SDL_DestroyRenderer(gRawRenderer);
     SDL_DestroyWindow(gRawWindow);
 }
